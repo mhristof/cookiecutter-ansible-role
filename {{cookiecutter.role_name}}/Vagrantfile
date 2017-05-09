@@ -2,10 +2,12 @@
 # vi: set ft=ruby :
 
 VAGRANT_CONFIG_VERSION = "2"
+VAGRANT_BOX_NAME = '{{ cookiecutter.role_name }}'.gsub('-', '_')
 
 Vagrant.configure(VAGRANT_CONFIG_VERSION) do |config|
-  config.vm.define name do |box|
+  config.vm.define VAGRANT_BOX_NAME do |box|
     box.vm.box = "ubuntu/xenial64"
+    box.vm.hostname = VAGRANT_BOX_NAME
     box.vm.network "private_network", type: "dhcp"
     box.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
