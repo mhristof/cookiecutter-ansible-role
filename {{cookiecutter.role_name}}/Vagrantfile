@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANT_CONFIG_VERSION) do |config|
 
     box.vm.provision "ansible" do |ansible|
       ansible.playbook = "tests/main.yml"
-      ansible.sudo = true
+      ansible.become = true
       ansible.limit = 'all'
       ansible.groups = {
         'all:vars' => {
